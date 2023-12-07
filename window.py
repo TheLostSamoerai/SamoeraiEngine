@@ -4,17 +4,22 @@ from sys import exit
 pg.init()
 
 class MainWindow:
-    def __init__(self, width, height, fps, caption, icon_path, Game):
+    def __init__(self, width, height, fps, caption, icon_path, Editor):
         self.window = pg.display.set_mode((width, height), vsync=True)
 
-        self.icon_img = pg.image.load(icon_path)
-        pg.display.set_icon(self.icon_img)
+        try:
+            self.icon_img = pg.image.load(icon_path)
+            pg.display.set_icon(self.icon_img)
+        except Exception:
+            print("No icon path specified")
+
+        
 
         pg.display.set_caption(str(caption))
 
         self.clock = pg.Clock()
         self.fps = fps
-        self.game = Game()
+        self.editor = Editor()
 
     def run(self):
         while True:
@@ -24,7 +29,7 @@ class MainWindow:
                     exit()
                 
             self.window.fill('black')
-            self.game.run()
+            self.editor.run()
             
             pg.display.update()
 
