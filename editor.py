@@ -1,7 +1,8 @@
 import pygame as pg
 
 class Editor:
-    def __init__(self):
-        pass
+    def __init__(self, Particle):
+        self.particle = Particle()
     def run(self):
-        pass
+        mouse_pos = pg.mouse.get_pos()
+        self.particle.run(mouse_pos)
